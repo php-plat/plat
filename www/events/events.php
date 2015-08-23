@@ -11,6 +11,7 @@
 
 		public function add($eventName, $eventData, $id = null) {
 			if (!$id) $id = session_id();
+			$this->read();
 
 			$this->data['events'][$id][]	= [
 				'event' 	=> $eventName,
@@ -25,11 +26,12 @@
 		public function sendEvents($id = null) {
 			if (!$id) $id = session_id();
 			
+			$this->read();
 			$events 	= $this->data['events'][$id];
 			$removed 	= [];
 
 			foreach ($events as $index => $event) {
-				$uid 	= uniqid($sid);
+				$uid 	= uniqid($id);
 				$this->sendEvent($event['event'], $event['data'], $uid);
 				$removed[]	= $index;
 			}
@@ -38,17 +40,18 @@
 				unset($events[$index]);
 			}
 
-			$this->data['events']	= $events;
+			$this->data['events'][$id]	= $events;
 			return $this->write();
 		}
 
 		protected function sendEvent($eventName, $data, $uid = null) {
 			global $eventTime;
-
+			
+			$eTime 		= (int) $eventTime * 1000;
 			$stream 	= 
 				"event: $eventName\n".
 				"id: $uid\n".
-				"retry: $eventTime\n".
+				"retry: $eTime\n".
 				"data: " . json_encode($data) .
 				"\n\n"
 			;
@@ -59,7 +62,9 @@
 
 		private function read() {
 
-			$dataPath 		= realpath('events/events.data');
+			$dataPath 		= ('events.data');
+			if (!file_exists($dataPath)) return false;
+
 			$content 		= file_get_contents($dataPath);
 			if (!$content) 	return false;
 
@@ -76,11 +81,12 @@
 
 		private function write() {
 
-			$dataPath 		= realpath('events/events.data');
+			$dataPath 		= ('events.data');
 			$serialized 	= serialize($this->data);
 			$encoded 		= base64_encode($serialized);
 
-			return file_put_contents($dataPath, $encoded);
+			if (file_put_contents($dataPath, $encoded)) return $this->read();
+			return false;			
 		}
 
 

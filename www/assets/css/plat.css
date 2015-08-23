@@ -1,0 +1,87 @@
+html, body {
+	padding: 	0px;
+	margin: 	0px;
+	height: 	100%;
+	width: 		100%;
+}
+
+body {
+	background-color: rgba(13,30,60,1);
+	background-image: none;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center top;
+}
+
+.panel, .panel-default, .panel-heading, .panel-body {
+	border-radius: 0px;
+	background-color: transparent;
+	border: 0px;
+}
+
+.panel.panel-default .panel-heading {
+	background-color: rgba(25,60,120, 0.85);
+	background-image: none;
+	color: #28f;
+}
+
+.text-primary, a:hover {
+	color: #28f;
+}
+
+.text-white {
+	color: #fff;
+}
+
+a {
+	color: rgba(25,60,120, 0.85);
+}
+
+.panel.panel-default .panel-body {
+	background-color: rgba(225,240,250, 0.85);
+	background-image: none;
+	color: #222;
+}
+
+.panel.panel-default {
+	box-shadow: rgba(0,0,0,0.5) 0px 12px 28px -6px;
+}
+
+
+
+.tight, .container, .container-fluid {
+	padding: 0px;
+}
+
+.spaceless {
+	margin: 0px;
+}
+.padded-xs {
+	padding: 5px;
+}
+.padded-sm {
+	padding: 10px;
+}
+.padded-md {
+	padding: 15px;
+}
+.padded-lg {
+	padding: 20px;
+}
+
+.bottom {
+	vertical-align: bottom;
+}
+
+.left {
+	text-align:left;
+}
+
+.center {
+	text-align:center;
+}
+
+.right {
+	text-align:right;
+}
