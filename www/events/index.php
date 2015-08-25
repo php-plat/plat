@@ -16,18 +16,14 @@
 
 		$parts 					= explode("average: ", $uptime, 2);
 		$load 					= $parts[count($parts)-1];
-		$parts 					= explode(', ', $load, 3);
-
-		foreach ($parts as $index => $part) {
-			$parts[$index] 	= (int) (($part * pi()) * 360);
-		}
-
+		
 		//Keep Alive Ping
 		$pingData 	= [
 			"id"				=> uniqid("kuhl-"),
 			"server-time"		=> date($serverTimeFormat),
-			"load"				=> $parts
+			"server-load"		=> $load
 		];
+
 		$events->add("ping", $pingData);
 
 		//Send Pending Events for Session
