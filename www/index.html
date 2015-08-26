@@ -50,22 +50,40 @@
               <div class="container-fluid">
                 <div class="row-fluid">
                   <div class="col-sm-8">
-                    <span class="server-time"></span>
-                    <br>
-                    <strong>Load Average</strong>
-                    <span>
-                      <span class="server-load load-5"></span>
-                      <span class="server-load load-10"></span>
-                      <span class="server-load load-15"></span>
-                    </span>
+                    
+                    <table class="table">
+                      <caption class="left server-time"></caption>
+                      <tbody>
+                        <tr>
+                          <th>Host</th>
+                          <td class="server-host"></td>
+                        </tr>
+                        <tr>
+                          <th>Name</th>
+                          <td class="server-name"></td>
+                        </tr>
+                        <tr>
+                          <th>Admin</th>
+                          <td class="server-admin"></td>
+                        </tr>
+                        <tr>
+                          <th>Load</th>
+                          <td class="server-load"></td>
+                        </tr>
+                        <tr>
+                          <th>Address</th>
+                          <td>
+                            <span class="server-addr"></span>:<span class="server-port"></span>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                      
                   </div>
                   <div class="col-sm-4 right hidden-xs">
                     <h2 class="spaceless">
-                      <span>
-                        <span class="server-load load-5-i"></span>
-                        <span class="server-load load-10-i"></span>
-                        <span class="server-load load-15-i"></span>
-                      </span>
+                      
                       <a href="#">
                         <span class="glyphicon glyphicon-off"></span>
                       </a>

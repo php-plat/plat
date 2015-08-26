@@ -21,7 +21,8 @@
 		$pingData 	= [
 			"id"				=> uniqid("kuhl-"),
 			"server-time"		=> date($serverTimeFormat),
-			"server-load"		=> $load
+			"server-load"		=> $load,
+			"server"			=> $_SERVER
 		];
 
 		$events->add("ping", $pingData);

@@ -46,7 +46,7 @@
 
 		protected function sendEvent($eventName, $data, $uid = null) {
 			global $eventTime;
-			
+
 			$eTime 		= (int) $eventTime * 1000;
 			$stream 	= 
 				"event: $eventName\n".

@@ -50,5 +50,3 @@ var notifyAPI = function() {
 
 	return this.init();
 };
-
-var notes 	= new notifyAPI();
