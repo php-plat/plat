@@ -1,6 +1,5 @@
 <?php
 
-
 	class bootMode {
 
 		private $type;
@@ -37,9 +36,7 @@
 		public function type() {
 			return $this->bootMode;
 		}
-
 	}
-
 
 	function load_config(array $config = array()) {
 		$folder 	= realpath("config");
@@ -54,7 +51,6 @@
 		}
 	}
 
-
 	function load_libraries(array $libraries = array()) {
 		$folder 	= realpath("library");
 		if (!$folder) return false;
@@ -66,37 +62,60 @@
 		}
 	}
 
+	function boot(bootMode $mode, array &$plugable = array()) {
+		$config 		= $mode->type();
+		$func 			= $config."_mode";
+		$mode 			= $func();
 
-	function boot(bootMode $mode) {
-
-		switch ($mode->type()) {
-			case "api":
-				$callFunctions 	= [
-					'config',
-					'libraries'
-				];
-
-				$libraries 		= [
-					'notes',
-					'events',
-					'core'
-				];
-
-				$config 		= [
-				];
-			break;
-
-			default:
-				$callFunctions	= [];
-			break;
-		}
-
-		foreach ($callFunctions as $function) {
+		foreach ($mode['callFunctions'] as $function) {
 			$func 		= "load_$function";
-			$param 		= $$function;
+			$param 		= $mode[$function];
 			$result 	= $func($param);
 		}
 
+		$plugable 		= ($mode['plugable']) ? $mode['plugable'] : [];
+		return true;
+	}
+
+	function api_mode() {
+		return [
+
+			'callFunctions' 	=> [
+				'config',
+				'libraries'
+			],
+
+			'libraries' 		=> [
+				'notes',
+				'events',
+				'core'
+			],
+
+			'config' 			=> [
+			],
+
+			'plugable'			=> [
+				'events',
+				'notes'
+			]
+		];
+	}
+
+	function default_mode() {
+		return [
+
+			'callFunctions' 	=> [
+			],
+
+			'libraries' 		=> [
+			],
+
+			'config' 			=> [
+			],
+
+			'plugable'			=> [
+			]
+		];
 	}
 
 ?>

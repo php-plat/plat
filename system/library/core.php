@@ -9,10 +9,16 @@
 		public $log;
 		public $errors;
 		
-		public function __construct(api &$api = null) {
-			$this->api 		= $api;
-			$this->events 	= new events();
-			$this->notes 	= new notes();
+		public function __construct(api &$api = null, array $plugableLibraries = array()) {
+			$this->api 					= $api;
+			
+			$this->init_plugableLibraries($plugableLibraries);
+		}
+
+		private function init_plugableLibraries(array $plugableLibraries = array()) {
+			foreach ($plugableLibraries as $lib) {
+				$this->plugins[$lib]	= new $lib();
+			}
 		}
 
 		public function __get($key) {

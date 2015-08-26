@@ -40,12 +40,12 @@
 			exit();
 		}
 
-		boot(new bootMode('api'));
-
+		$plugableLibraries	= [];
+		boot(new bootMode('api'), $plugableLibraries);		
 
 
 		/** Create New API Core */
-		$core 		= new core($api);
+		$core 		= new core($api, $plugableLibraries);
 
 		/** Add Request to Queue */
 		$requestId 	= $api->addRequest($request);
