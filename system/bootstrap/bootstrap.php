@@ -38,16 +38,15 @@
 		}
 	}
 
-	function load_config(array $config = array()) {
+	function load_config(array $configList = array()) {
+		global $config;
+
 		$folder 	= realpath("config");
 		if (!$folder) return false;
+		if (!isset($config) or !is_array($config)) $config = [];
 
-		foreach ($config as $cfg) {
-			$path 	= realpath("$folder/$cfg.php");
-			if (!$path) return false;
-			/**
-			@todo config class and load config into memory
-			*/
+		foreach ($configList as $cfg) {
+			$config[$cfg] = new config($folder, $cfg);
 		}
 	}
 
@@ -81,22 +80,24 @@
 		return [
 
 			'callFunctions' 	=> [
-				'config',
-				'libraries'
+				'libraries',
+				'config'
 			],
 
 			'libraries' 		=> [
 				'notes',
 				'events',
+				'config',
 				'core'
 			],
 
 			'config' 			=> [
+				'system'
 			],
 
 			'plugable'			=> [
 				'events',
-				'notes'
+				'notes'				
 			]
 		];
 	}
