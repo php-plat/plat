@@ -65,7 +65,10 @@ var platAPI = function() {
 		var request 	= $.post(
 			self.apiSource,
 			payload,
-			callback
+			function(result) {
+				var data 	= JSON.parse(result);
+				if (typeof data.result != 'undefined') callback(data.result);
+			}
 		);
 
 		return this;
@@ -81,7 +84,10 @@ var platAPI = function() {
 		var request 	= $.get(
 			this.apiSource,
 			payload,
-			callback
+			function(result) {
+				var data 	= JSON.parse(result);
+				if (typeof data.result != 'undefined') callback(data.result);
+			}
 		);
 
 		return this;

@@ -25,6 +25,7 @@
 			}
 
 			$this->ready 		= (file_exists($this->path) and is_writable($this->path));
+			$this->read();
 		}
 
 		public function __toString() {
@@ -70,45 +71,52 @@
 
 			$content		= [
 				'version'		=> '1.0',
-				'created'		=> microtime(true),
+				'updated'		=> microtime(true),
 				'id'			=> uniqid(),
-				'data'			=> []
+				'data'			=> [
+					'created'	=> microtime(true)
+				]
 			];
 
-			$serialize	= serialize($content);
-			$encoded	= base64_decode($serialize);
+			$serialized	= serialize($content);
+			$encoded	= base64_encode($serialized);
 			$bytes 		= file_put_contents($this->path, $encoded);
 			return ($bytes !== 0 and $bytes !== false);
 		}
 
 		private function read() {
-			if (!$this->ready or !$this->path) return false;
+			if (!$this->path) return false;
 
 			$encoded 	= file_get_contents($this->path);
 			if (!$encoded) return false;
 
 			$serialized	= base64_decode($encoded);
-			if (!$serialzied)  return false;
+			if (!$serialized)  return false;
 
 			$config 	= unserialize($serialized);
 			if (!$config) return false;
 
 			$this->data 	= (isset($config['data'])) ? $config['data'] : [];
+			$this->ready 	= (is_array($this->data));
+			
+			unset($config['data']);
 			$this->config 	= $config;
-			$this->ready 	= (is_array($this->config));
 
 			return $this->data;
 		}
 
 		private function write() {
-			if (!$this->ready or !$this->path) return false;
-			if (!$this->config) return false;
+			if (!$this->path) return false;
 
-			$content 			= $this->config;
-			$content['data']	= $this->data;
+			$content		= [
+				'version'		=> '1.0',
+				'updated'		=> microtime(true),
+				'id'			=> uniqid(),
+				'data'			=> $this->data
+			];
 
-			$serialize	= serialize($content);
-			$encoded	= base64_decode($serialize);
+			$serialized	= serialize($content);
+			$encoded	= base64_encode($serialized);
 			$bytes 		= file_put_contents($this->path, $encoded);
 
 			if ($bytes !== 0 and $bytes !== false) read();

@@ -61,7 +61,51 @@
 		}
 	}
 
+	function load_plugins() {
+		global $mods;
+		global $plugin_dbs;
+
+		$folder 	= realpath("plugins");
+		if (!$folder) return false;		
+
+		$list 		= scandir($folder);
+		foreach ($list as $item) {
+			if ($item == '.' or $item == '..') continue;
+			if (!is_dir("$folder/$item")) continue;
+
+			$manifest 	= "$folder/$item/manifest.json";
+			if (!file_exists($manifest)) continue;
+
+			$data['path']		= "$folder/$item/$item.php";
+			$data['folder']		= "$folder/$item";
+
+			$json 				= file_get_contents($manifest);
+			$manifest 			= json_decode($json, true);
+
+			$data['manifest']	= $manifest;
+			$data['name']		= $manifest['name'];
+			$mods[$item]		= $data;
+
+			$libs 				= $manifest['libraries'];
+			foreach ($libs as $lib) {
+				$path 	= ("$folder/$item/$lib.php");
+				if (!$path) continue;
+
+				$included 		= include($path);
+			}
+
+			$databases 			= $manifest['databases'];
+			foreach ($databases as $db) {
+				if (!isset($manifest[$db])) continue;
+
+				$plugin_dbs[$item][$db]	= $manifest[$db];
+			}
+		}
+	}
+
 	function boot(bootMode $mode, array &$plugable = array()) {
+		global $mods;
+
 		$config 		= $mode->type();
 		$func 			= $config."_mode";
 		$mode 			= $func();
@@ -73,6 +117,12 @@
 		}
 
 		$plugable 		= ($mode['plugable']) ? $mode['plugable'] : [];
+
+		foreach ($mods as $pluginName => $meta) {
+			if (!isset($meta['init']) or $meta['init'] != true) continue;
+			$plugable[]	= $meta['class'];
+		}
+			
 		return true;
 	}
 
@@ -81,13 +131,16 @@
 
 			'callFunctions' 	=> [
 				'libraries',
-				'config'
+				'config',
+				'plugins'
 			],
 
 			'libraries' 		=> [
 				'notes',
 				'events',
 				'config',
+				'plugin',
+				'database',
 				'core'
 			],
 
@@ -95,9 +148,11 @@
 				'system'
 			],
 
+			'plugins'			=> [],
+
 			'plugable'			=> [
 				'events',
-				'notes'				
+				'notes'
 			]
 		];
 	}

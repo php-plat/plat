@@ -9,15 +9,22 @@
 		public $log;
 		public $errors;
 		
-		public function __construct(api &$api = null, array $plugableLibraries = array()) {
+		public function __construct(api &$api = null, array $plugableLibraries = array(), array $plugins = array()) {
 			$this->api 					= $api;
 			
 			$this->init_plugableLibraries($plugableLibraries);
+			$this->init_plugins($plugins);
 		}
 
 		private function init_plugableLibraries(array $plugableLibraries = array()) {
 			foreach ($plugableLibraries as $lib) {
 				$this->plugins[$lib]	= new $lib();
+			}
+		}
+
+		private function init_plugins(array $plugins = array()) {
+			foreach ($plugins as $name => $plugin) {
+				$this->plugins[$name]	= $plugin;
 			}
 		}
 
@@ -54,6 +61,10 @@
 				}
 
 				$requestObject 	= $this->plugins[$request->class];
+				if (is_array($requestObject)) {
+					$plugin			= $request->class;
+					$requestObject 	= new $plugin();
+				}
 
 				if (!method_exists($requestObject, $request->method)) {
 					$this->error("Method {$request->method} does not exist on {$request->class}");

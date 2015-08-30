@@ -6,6 +6,8 @@
 
 
 	function initAPI() {
+		global $mods;
+
 		/** Variables */
 		$started 	= session_start();
 		$uid 		= session_id();
@@ -45,7 +47,7 @@
 
 
 		/** Create New API Core */
-		$core 		= new core($api, $plugableLibraries);
+		$core 		= new core($api, $plugableLibraries, $mods);
 
 		/** Add Request to Queue */
 		$requestId 	= $api->addRequest($request);
