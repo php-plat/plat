@@ -19,15 +19,5 @@
 		"username":	"root",
 		"password":	"",
 		"schema":	"test"
-	},
-
-	"tables": 		{
-		"test": 		[
-			"id INT(6) NOT NULL AUTO_INCREMENT",
-			"new_col VARCHAR(45) NULL",
-			"PRIMARY KEY (id)",
-			"UNIQUE INDEX id_UNIQUE (id ASC)",
-			"INDEX dates (new_col ASC)"
-		]
 	}
 }

@@ -3,7 +3,7 @@
 	class database {
 
 		protected $hostOptions	= null;
-		protected $connection	= null;
+		public $connection	= null;
 
 		public $ready 			= false;
 		public $errors 			= [];
@@ -67,15 +67,65 @@
 
 	class table {
 
-		protected $name;
+		public  $name;
 		protected $database;
+
+		public $lastResult;
 
 		public function __construct($tableName, database $connection) {
 			$this->name 	= $tableName;
 			$this->database = $connection;
 		}
 
-		public function query() {
+		public function __invoke($input = null) {
+			if (is_numeric($input)) {
+				return $this->record($input);
+			} elseif (is_array($input)) {
+				return $this->commit($input);
+			} elseif (is_string($input)) {
+				return $this->query($input);
+			} else {
+				return $this;
+			}
+		}
+
+		public function query($sql) {
+			$connection 	= $this->database->connection;
+			$result 		= $connection->query($sql);
+			$data 			= [];
+
+			if (!$result) {
+				$this->errors[] 	= $connection->error;
+				return false;
+			} else {
+				$this->lastResult	= $result;
+			}
+
+			while ($row = $result->fetch_assoc()) {
+				$data[]	= $row;
+			}
+
+			return $data;
+		}
+
+		public function record($id) {
+			$records 	= $this->query("SELECT * FROM `{$this->name}` WHERE `id` = $id;");
+			return (isset($records[0])) ? $records[0] : false;
+		}
+
+		public function insert(array $record = array(), array $buffer = array()) {
+
+		}
+
+		public function update($id, array $data = array(), array $buffer = array()) {
+
+		}
+
+		public function delete($id, array $buffer = array()) {
+
+		}
+
+		public function commit(array $data = array()) {
 
 		}
 

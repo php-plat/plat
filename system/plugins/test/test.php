@@ -6,8 +6,8 @@
 			parent::__construct('test');
 		}
 
-		public function test() {
-			return $this;
+		public function test($query) {
+			return $this->query($query);
 		}
 
 	}

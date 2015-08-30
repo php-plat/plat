@@ -10,6 +10,8 @@
 		protected $connections;
 		protected $config;
 
+		private $default_connection;
+
 		public function __construct($name) {
 			global $mods;
 			global $plugin_dbs;
@@ -28,6 +30,15 @@
 				? $this->config[$key]
 				: null
 			;
+		}
+
+		public function __invoke($key = null) {
+			if ($key) return $this->$key;
+			return $this->config;
+		}
+
+		public function __toString() {
+			return json_encode($this);
 		}
 		
 		private function loadConfig() {
@@ -56,15 +67,37 @@
 			foreach ($dbs as $dbName => $db) {
 				foreach ($db as $var => $val) {$$var = $val;}
 
-				$conn	= new mysqli($host, $username, $password, $schema, $port);
+				$host		= new databaseOptions($host, $port, $username, $password, $schema);
+				$database 	= new database($host);
 
-				if ($conn->connect_errno) {
-					$this->errors[]	= $conn->connect_error;
+				if (!$database->ready) {
+					$this->errors[]	= $database->errors;
 					continue;
 				}
 
-				$this->connections[$dbName]	= $conn;
+				if (!$this->default_connection) $this->default_connection = $database;
+
+				$this->connections[$dbName]	= $database;
 			}
+		}
+
+		public function table($tableName, $connectionName = null) {
+
+			$connection 		= ($connectionName and isset($this->connections[$connectionName]))
+				? $this->connections[$connectionName]
+				: (($this->default_connection)
+					? $this->default_connection
+					: null
+				)
+			;
+
+			if (!$connection) return false;
+			return $connection->table($tableName);
+		}
+
+		public function query($sql) {
+			$table 	= $this->table("");
+			return $table($sql);
 		}
 
 	}
