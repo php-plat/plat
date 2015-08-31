@@ -7,6 +7,7 @@
 
 	function initAPI() {
 		global $mods;
+		global $core;
 
 		/** Variables */
 		$started 	= session_start();

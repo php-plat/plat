@@ -1,6 +1,5 @@
 <?php
 
-
 	class config {
 
 		protected $folder;
