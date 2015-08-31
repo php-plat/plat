@@ -1,0 +1,11 @@
+{
+	"name":			"plat",
+	"short_name":	"plat",
+	"icons": [
+		{
+			"src":		"assets/img/ico/plat-black.ico",
+			"sizes":	"64x64 72x72 96x96 112x112 128x128 256x256 512x512"
+		}
+	],
+	"display":		"fullscreen"
+}
