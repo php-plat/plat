@@ -1,6 +1,6 @@
 <?php 
 
-	class events {
+	final class events {
 
 		protected $data 		= array();
 		protected $ready		= false;
@@ -21,7 +21,7 @@
 				'id'		=> $id
 			];
 
-			return $this->write();
+			return ($this->write() != false);
 		}
 
 		private function read() {			

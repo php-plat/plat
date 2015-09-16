@@ -1,10 +1,10 @@
 {
-	"name":			"plat",
+	"name":			"php-plat",
 	"short_name":	"plat",
 	"icons": [
 		{
 			"src":		"assets/img/ico/plat-black.ico",
-			"sizes":	"64x64 72x72 96x96 112x112 128x128 256x256 512x512"
+			"sizes":	"16x16 24x24 32x32 48x48 64x64 72x72 96x96 112x112 128x128 256x256 512x512"
 		}
 	],
 	"display":		"fullscreen"

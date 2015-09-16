@@ -1,7 +1,8 @@
 
-var platAPI = function() {
+var platAPI = function(contextRequest) {
 
 	var self 		= this;
+	this.context 	= contextRequest;
 
 	this.apiSource 	= '';
 
@@ -50,6 +51,11 @@ var platAPI = function() {
 	this.hook 				= function(eventName, callback) {
 		if (!this.events.listen(eventName, callback)) return false;
 		return true;
+	};
+
+
+	this.call 				= function(method, data, callback) {
+		return this.send(this.context, method, data, callback);
 	};
 
 

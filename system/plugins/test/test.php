@@ -6,8 +6,12 @@
 			parent::__construct('test');
 		}
 
-		public function test($query) {
+		public function testQuery($query) {
 			return $this->query($query);
+		}
+
+		public function testNote($noteTitle, $noteMessage) {
+			return $this->clientNotification($noteTitle, $noteMessage);
 		}
 
 	}

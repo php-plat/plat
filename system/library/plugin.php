@@ -1,6 +1,6 @@
 <?php
 
-	class plugin {
+	abstract class plugin {
 
 		public $name;
 		public $errors;
@@ -98,6 +98,16 @@
 		public function query($sql) {
 			$table 	= $this->table("");
 			return $table($sql);
+		}
+
+		public function clientEvent($eventName, $eventData) {
+			global $core;
+			return $core->events->add($eventName, $eventData);
+		}
+
+		public function clientNotification($title, $message) {
+			global $core;
+			return $core->notes->add($title, $message);
 		}
 
 	}
