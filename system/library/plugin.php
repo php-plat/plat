@@ -97,7 +97,9 @@
 
 		public function query($sql) {
 			$table 	= $this->table("");
-			return $table($sql);
+
+			if (!$sql or !$table) return false;
+			return $table->query($sql);
 		}
 
 		public function clientEvent($eventName, $eventData) {

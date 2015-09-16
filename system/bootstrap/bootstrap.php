@@ -139,6 +139,8 @@
 				'notes',
 				'events',
 				'config',
+				'logger',
+				'errorHandler',
 				'plugin',
 				'database',
 				'core'
@@ -151,6 +153,8 @@
 			'plugins'			=> [],
 
 			'plugable'			=> [
+				'logger',
+				'errorHandler',
 				'events',
 				'notes'
 			]
