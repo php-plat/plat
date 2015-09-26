@@ -139,6 +139,7 @@
 				'notes',
 				'events',
 				'config',
+				'auth',
 				'logger',
 				'errorHandler',
 				'plugin',
@@ -147,7 +148,8 @@
 			],
 
 			'config' 			=> [
-				'system'
+				'system',
+				'users'
 			],
 
 			'plugins'			=> [],
@@ -155,6 +157,7 @@
 			'plugable'			=> [
 				'logger',
 				'errorHandler',
+				'auth',
 				'events',
 				'notes'
 			]

@@ -9,10 +9,12 @@
 
 		protected $data;
 
-		public function __construct($class, $method, $type, array $data = array()) {
+		public function __construct($class, $method, $type, $data = array()) {
 			$this->class 	= $class;
 			$this->method 	= $method;
 			$this->type 	= $type;
+
+			if ($data and !is_array($data)) $data = [$data];
 			$this->data 	= $data;
 		}
 

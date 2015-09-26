@@ -8,9 +8,10 @@
 
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+      <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"-->
 
       <!-- Kuhl Framework Style -->
+      <link rel="stylesheet" href="./assets/css/paper.theme.css">
       <link rel="stylesheet" href="./assets/css/plat.css">
 
       <!-- Manifest -->
@@ -24,79 +25,62 @@
   </head>
   <body>
 
-    <div class="container-fluid spaceless">
-      <div class="row-fluid tight spaceless">
-        <div class="col-sm-8 col-sm-offset-2 tight">
-          <div style="height:60px;" class="hidden-xs">&nbsp;</div>
-          <div class="panel panel-default spaceless">
-            <div class="panel-heading">
-              <h2 class="spaceless">
-                <div class="padded-sm">
-                  <img class="bottom" src="assets/img/ico/plat-white.png" style="height:36px">
-                  <span class="text-white">php-Plat</span>
-                  <hr class="small spaceless tight text-primary">
-                </div>
-                <div class="padded-sm">
-                  <small>
-                    <small class="pull-right text-primary">Alpha Version 0.1</small>
-                    <small class="pull-left text-primary">
-                      A WebApp Framework
-                    </small>
-                  </small>
-                </div>
-              </h2>
-            </div>
-            <div class="panel-body">
-              <div class="container-fluid">
-                <div class="row-fluid">
-                  <div class="col-sm-8">
-                    
-                    <table class="table">
-                      <caption class="left server-time"></caption>
-                      <tbody>
-                        <tr>
-                          <th>Host</th>
-                          <td class="server-host"></td>
-                        </tr>
-                        <tr>
-                          <th>Name</th>
-                          <td class="server-name"></td>
-                        </tr>
-                        <tr>
-                          <th>Admin</th>
-                          <td class="server-admin"></td>
-                        </tr>
-                        <tr>
-                          <th>Load</th>
-                          <td class="server-load"></td>
-                        </tr>
-                        <tr>
-                          <th>Address</th>
-                          <td>
-                            <span class="server-addr"></span>:<span class="server-port"></span>
-                          </td>
-                        </tr>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Plat</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
-                      </tbody>
-                    </table>
-                      
-                  </div>
-                  <div class="col-sm-4 right hidden-xs">
-                    <h2 class="spaceless">
-                      
-                      <a href="#">
-                        <span class="glyphicon glyphicon-off"></span>
-                      </a>
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="container">
+
+      <div style="height:75px;" class="hidden-xs">&nbsp;</div>
+      <div style="height:35px;" class="visible-xs">&nbsp;</div>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron padded-md">
+        <h1>
+          <img src="assets/img/ico/plat-black.png" style="vertical-align:top;height:64px;width:64px;">
+          Plat
+          <br>
+          <small class="hidden-xs">A WebApp Framework</small>
+        </h1>
+        <hr>
+        <p>
+          A Project still in development  
+        </p>
+        <p>
+          Made with 
+          <small><span class="glyphicon glyphicon-heart"></span></small> 
+          by VisionMise
+        </p>
+        <hr>
+        <div class="right">
+          <div>
+            <small><span class="server-time"></span></small>
+          </div>
+          <div>
+            <small>Current Server Load: <span class="server-load"></span></small>
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -109,5 +93,8 @@
     <script src="assets/js/plat-events.js"></script>
     <script src="assets/js/plat-api.js"></script>
     <script src="assets/js/plat-init.js"></script>
+
+    <!-- Extensions -->
+    <script src="assets/js/extensions/testExt/testExt.js"></script>
   </body>
 </html>

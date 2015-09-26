@@ -109,7 +109,7 @@
 		}
 
 		public function record($id) {
-			$records 	= $this->query("SELECT * FROM `{$this->name}` WHERE `id` = $id;");
+			$records 	= $this->query("SELECT * FROM `{$this->name}` WHERE `id` = '$id';");
 			return (isset($records[0])) ? $records[0] : false;
 		}
 

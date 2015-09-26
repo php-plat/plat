@@ -50,8 +50,6 @@
 		/** Create New API Core */
 		$core 		= new core($api, $plugableLibraries, $mods);
 
-		$core->logger->logMessage("est");
-
 		/** Add Request to Queue */
 		$requestId 	= $api->addRequest($request);
 
