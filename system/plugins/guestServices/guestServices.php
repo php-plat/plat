@@ -51,6 +51,12 @@
 			return $sys->version;
 		}
 
+		public function tagline() {
+			global $config;
+			$sys 	= $config['system'];
+			return $sys->tagline;
+		}
+
 
 	}
 

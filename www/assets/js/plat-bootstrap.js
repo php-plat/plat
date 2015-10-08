@@ -108,6 +108,10 @@
 			$('.appVersion').html(data);
 		});
 
+		gsAPI.call('tagline', [], function(data) {
+			$('.appTagline').html(data);
+		});
+
 	}
 
 

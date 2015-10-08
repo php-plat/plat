@@ -6,19 +6,16 @@
         <div class="panel-body">
           <h2>
             <img src="assets/img/ico/plat-black.png" style="vertical-align:bottom;height:64px;width:64px;">
-            Plat
+            <span class="appName"></span>
           </h2>
-          <p>
-            A WebApp Framework still in development and powered by 
-            <small><span class="glyphicon glyphicon-heart-empty"></span></small>                
-          </p>
+          <p class="appTagline"></p>
           <hr>
           <div class="right">
             <div>
               <small><span class="server-time"></span></small>
             </div>
             <div>
-              <small>Current Server Load: <span class="server-load"></span></small>
+              <small>Current Server Load: <span class="server-load">Connecting...</span></small>
             </div>
           </div>
         </div>

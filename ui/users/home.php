@@ -12,7 +12,7 @@
               <small><span class="server-time"></span></small>
             </div>
             <div>
-              <small>Current Server Load: <span class="server-load"></span></small>
+              <small>Current Server Load: <span class="server-load">Connecting...</span></small>
             </div>
           </div>
         </div>
