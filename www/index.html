@@ -4,7 +4,8 @@
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>plat</title>
+      <meta name="theme-color" content="#2196f3">
+      <title></title>
 
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -23,10 +24,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
   </head>
-  <body>
+  <body class="backed">
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -35,53 +36,38 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Plat</a>
+          <div class="text-white text-xl padded-sm">
+            &nbsp;
+            <span class="appName">Loading...</span>
+            <small class="text-xs">Version <span class="appVersion">0.0.0</span></small>
+          </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse navbar-right collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+              <a class="auth_signin" href="javascript:void(0);" style="display:none;" data-toggle="collapse" data-target="#navbar">
+                &nbsp;
+                <span class="glyphicon glyphicon-lock"></span>
+                Sign In
+              </a>
+            </li>
+            <li>
+              <a class="auth_perform_signout auth_label" title="Sign Out" href="javascript:void(0);" style="display:none;">
+                &nbsp;
+                <span class="glyphicon glyphicon-heart"></span>
+                <span class="auth_username"></span>
+              </a>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
+    <div style="height:85px;" class="hidden-xs">&nbsp;</div>
+    <div style="height:35px;" class="visible-xs">&nbsp;</div>
 
-      <div style="height:75px;" class="hidden-xs">&nbsp;</div>
-      <div style="height:35px;" class="visible-xs">&nbsp;</div>
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron padded-md">
-        <h1>
-          <img src="assets/img/ico/plat-black.png" style="vertical-align:top;height:64px;width:64px;">
-          Plat
-          <br>
-          <small class="hidden-xs">A WebApp Framework</small>
-        </h1>
-        <hr>
-        <p>
-          A Project still in development  
-        </p>
-        <p>
-          Made with 
-          <small><span class="glyphicon glyphicon-heart"></span></small> 
-          by VisionMise
-        </p>
-        <hr>
-        <div class="right">
-          <div>
-            <small><span class="server-time"></span></small>
-          </div>
-          <div>
-            <small>Current Server Load: <span class="server-load"></span></small>
-          </div>
-        </div>
-      </div>
-
+    <div class="container-fluid" id="content">
     </div>
-    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -89,6 +75,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- Plat Script -->
+    <script src="assets/js/plat-bootstrap.js"></script>
     <script src="assets/js/plat-notify.js"></script>
     <script src="assets/js/plat-events.js"></script>
     <script src="assets/js/plat-api.js"></script>

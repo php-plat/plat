@@ -1,6 +1,6 @@
 <?php
 
-	header('Cache-Control: no-cache');
+	//header('Cache-Control: no-cache');
 
 	exit(initAPI());
 
@@ -13,7 +13,7 @@
 		$started 	= session_start();
 		$uid 		= session_id();
 		$received	= $_REQUEST;
-		$expecting 	= ['class', 'method', 'type', 'data'];
+		$expecting 	= ['class', 'method', 'type', 'data', 'token'];
 
 		/** Include API Class and Change to System */
 		include('api.php');
@@ -30,8 +30,14 @@
 			;
 		}
 
+
+		/** Session Token */
+		if (isset($_SESSION['token']) and $_SESSION['token'] and !$token) {
+			$token 	= $_SESSION['token'];
+		}
+
 		/** Create an API Request Object for Input */
-		$request 	= new apiRequest($class, $method, $type, $data);
+		$request 	= new apiRequest($class, $method, $type, $data, $token);
 		$api 		= new api();
 
 

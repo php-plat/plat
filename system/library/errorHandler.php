@@ -23,7 +23,7 @@
 			    case E_USER_WARNING:
 			    case E_USER_ERROR:
 			    	$msg 		= 
-			    		"Fatal error on line $errline in file $errfile. \n".
+			    		"-FATAL- Error on line $errline in file $errfile.\n".
 			    		"[$errno] $errstr"
 			    	;
 
@@ -33,7 +33,10 @@
 		        break;
 
 			    default:
-			        $msg = "Unknown error type: [$errno] $errstr<br />\n";
+			        $msg 		= 
+			    		"Error on line $errline in file $errfile.\n".
+			    		"[$errno] $errstr"
+			    	;
 
 			        $core->logger->logMessage($msg);
 		        break;

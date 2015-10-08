@@ -158,6 +158,17 @@
 			return $this->html;
 		}
 
+		public static function dialog($dialogPage, array $param, $render = false) {
+
+			$file 		= realpath("dialog/$dialogPage.php");
+			if (!$file) return false;
+
+			$html 		= file_get_contents($file);
+			if ($render) print $html;
+
+			return $html;
+		}
+
 	}
 	
 ?>

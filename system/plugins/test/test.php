@@ -30,6 +30,21 @@
 			return $this->__toString();
 		}
 
+		public function addUser($email, $password) {
+			$auth = new auth();
+			return $auth->addUser($email,$password);
+		}
+
+		public function getUser($email) {
+			global $config;
+			$users 		= $config['users'];
+			return $users->$email;
+		}
+
+		public function dialog($page) {
+			return ui::dialog($page, []);
+		}
+
 	}
 
 ?>

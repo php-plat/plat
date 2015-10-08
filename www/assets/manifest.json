@@ -1,11 +1,12 @@
 {
 	"name":			"php-plat",
 	"short_name":	"plat",
+	"display":		"fullscreen",
+	"theme_color":	"#2196f3",
 	"icons": [
 		{
 			"src":		"assets/img/ico/plat-black.ico",
 			"sizes":	"16x16 24x24 32x32 48x48 64x64 72x72 96x96 112x112 128x128 256x256 512x512"
 		}
-	],
-	"display":		"fullscreen"
+	]
 }

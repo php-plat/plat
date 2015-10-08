@@ -10,7 +10,19 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	background-position: center top;
+	background-position: bottom middle;
+}
+
+.trans {
+	opacity: 0.85;
+}
+
+.backed {
+	background-image: url('http://www.themebin.com/wp-content/uploads/hd-wallpapers/1920x1200/blue_skies_from_pain_1920x1200.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: middle top;
 }
 
 .panel, .panel-default, .panel-heading, .panel-body {
@@ -29,6 +41,30 @@ body {
 	color: #fff;
 }
 
+.text-xxs {
+	font-size:25%;
+}
+
+.text-xs {
+	font-size:50%;
+}
+
+.text-sm {
+	font-size: 75%;
+}
+
+.text-md {
+	font-size:110%;
+}
+
+.text-lg {
+	font-size:150%;
+}
+
+.text-xl {
+	font-size:200%;
+}
+
 a {
 	color: rgba(45,128,180, 0.85);
 }
@@ -40,10 +76,8 @@ a {
 }
 
 .panel.panel-default {
-	box-shadow: rgba(0,0,0,0.5) 0px 12px 28px -6px;
+	box-shadow: rgba(0,0,0,0.5) 0px 4px 8px -4px;
 }
-
-
 
 .tight, .container, .container-fluid {
 	padding: 0px;
@@ -79,4 +113,81 @@ a {
 
 .right {
 	text-align:	right;
+}
+
+
+.dialog {
+	opacity: 1;
+	z-index: 100000;
+}
+.dialog .panel {
+	box-shadow: rgba(0,0,0,0.25) 0px 12px 18px -4px;
+}
+
+@media (max-width: 767px) {
+
+	.dialog {
+		position: 	absolute;
+		top: 		0px;
+		width:		100%;
+		height: 	100%;
+	}
+
+}
+
+@media (min-width: 768px) {
+	.dialog {
+		position: 	absolute;
+		top: 		15%;
+		left:		25%;
+		right:		25%;
+		bottom:		25%;
+	}
+}
+
+
+@media (min-width: 992px) {
+	.dialog {
+		position: 	absolute;
+		top: 		15%;
+		left:		25%;
+		right:		25%;
+		bottom:		25%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.dialog {
+		position: 	absolute;
+		top: 		20%;
+		left:		30%;
+		right:		30%;
+	}
+}
+
+@media (min-width: 768px) {
+	div, p, body, nav, ul, a, li, ol, button, span, html {
+		transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-webkit-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-moz-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-o-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+	}
+}
+
+@media (min-width: 992px) {
+	div, p, body, nav, ul, a, li, ol, button, span, html {
+		transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-webkit-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-moz-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-o-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+	}
+}
+
+@media (min-width: 1200px) {
+	div, p, body, nav, ul, a, li, ol, button, span, html {
+		transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-webkit-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-moz-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+		-o-transition: -webkit-filter 0.35s, filter 0.35s, opacity 0.35s, color 0.35s, background-color 0.35s;
+	}
 }
