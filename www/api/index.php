@@ -1,7 +1,5 @@
 <?php
 
-	//header('Cache-Control: no-cache');
-
 	exit(initAPI());
 
 
