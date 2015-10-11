@@ -1,12 +1,10 @@
 php-plat
 ---
-alpha version 0.1
+Release Candidate 1 version 0.1.1
 
 A WebApp Framework for PHP
 
 ### About Plat
-php-Plat is a code name and will be updated at some point. It's short for "PHP platform".
-
 php-Plat is a PHP webApp Framework designed to assist in web application development.
 Plat provided the ground work for creating a web application in PHP. It uses a collection
 of built in features to provide basic programing tools such as built-in controllers for
@@ -21,14 +19,14 @@ It uses a plugin-based system to provide extensiability to developers.
 - JavaScript Client API
 - Server-Side API
 - Server-to-client Events and Push Notifications
+- Global Error Handling
+- Logging
+- Authentication Layer
 
 ### Future Development
 
 Additional features are already being developed. Here is a short list.
 
-- Global Error Handling
-- Custom Logging
-- Authentication Layer
 - Code Documentation
 - User Documentation
 - Code Standardization
