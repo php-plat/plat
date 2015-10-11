@@ -60,7 +60,9 @@
 	}
 
 	function init_home_page() {
-		gsAPI.page('home', [], '#content');
+		gsAPI.page('home', [], '#content', function(data) {
+			check_authentication();
+		});
 	}
 
 

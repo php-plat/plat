@@ -51,9 +51,10 @@ var platAPI = function(contextRequest) {
 
 
 	/** UX */
-		this.page 				= function(pageName, param, element) {
+		this.page 				= function(pageName, param, element, callback) {
 			return this.send('guestServices', 'ux', [pageName, param], function(data) {					
 				$(element).html(data);
+				callback(data);
 			});
 		};
 
