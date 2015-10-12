@@ -46,11 +46,29 @@
 			$requests 	= $this->api->pending();
 			foreach ($requests as $urid => $request) {
 
+				$validToken 			= ($this->validateToken($request->token()) or ($request->class == 'guestServices'));
+
+				if (!$validToken) {
+					$this->error("Invalid API Token");
+					$this->results[$urid]	= [
+						'result'		=> false,
+						'okay'			=> false,
+						'errors'		=> $this->errors,
+						'id'			=> $urid,
+						'timestamp'		=> time(),
+						'microtime'		=> microtime(true)
+					];
+
+					$this->api->push($this->results);
+					continue;
+				}
+
 				if (!$this->hasPlugin($request->class)) {
 					$this->error("Plugin {$request->class} does not exist");
 					$this->results[$urid]	= [
 						'result'		=> false,
 						'okay'			=> false,
+						'errors'		=> $this->errors,
 						'id'			=> $urid,
 						'timestamp'		=> time(),
 						'microtime'		=> microtime(true)
@@ -71,6 +89,7 @@
 					$this->results[$urid]	= [
 						'result'		=> false,
 						'okay'			=> false,
+						'errors'		=> $this->errors,
 						'id'			=> $urid,
 						'timestamp'		=> time(),
 						'microtime'		=> microtime(true)
@@ -124,6 +143,10 @@
 		protected function log($msg) {
 			$this->log[] = $msg;
 		}
+
+		private function validateToken($token) {
+			return false;
+		}	
 
 	}
 

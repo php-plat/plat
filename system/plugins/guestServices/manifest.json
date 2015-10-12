@@ -1,0 +1,11 @@
+{
+	"name":			"guestServices",
+
+	"libraries":	[
+		"guestServices"
+	],
+
+	"config":		[
+		"guests"
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"callFunctions":	[
+		"libraries",
+		"config",
+		"plugins",
+		"headers"
+	],
+
+	"libraries": 		[
+		"notes",
+		"events",
+		"config",
+		"auth",
+		"logger",
+		"errorHandler",
+		"plugin",
+		"database",
+		"core"
+	],
+
+	"config":			[
+		"system",
+		"users"
+	],
+
+	"plugins":			[],
+	"headers":			[],
+
+	"plugable":			[
+		"logger",
+		"errorHandler",
+		"events",
+		"notes"
+	]
+
+}

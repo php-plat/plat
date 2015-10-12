@@ -11,20 +11,13 @@
 
 			switch (strtolower($bootMode)) {
 
+				default:
 				case 1:
 				case 'script':
 				case 'javascript':
 				case 'api':
 					$this->bootMode 	= 'api';
 				break;
-
-				case 0:
-				case '':
-				case 'gui':
-				default:
-					$this->bootMode 	= 'default';
-				break;
-
 			}
 
 		}
@@ -94,13 +87,24 @@
 				$included 		= include($path);
 			}
 
-			$databases 			= $manifest['databases'];
+			$databases 			= (isset($manifest['databases'])) ? $manifest['databases'] : [];
 			foreach ($databases as $db) {
 				if (!isset($manifest[$db])) continue;
 
 				$plugin_dbs[$item][$db]	= $manifest[$db];
 			}
 		}
+	}
+
+	function load_headers() {
+		global $config;
+
+		$sys 		= (isset($config['system'])) ? $config['system'] : null;
+		$headers 	= ($sys->headers) ? $sys->headers : [];
+
+		if (!$headers) return false;
+		foreach ($headers as $header) {header($header);}
+		return true;
 	}
 
 	function boot(bootMode $mode, array &$plugable = array()) {
@@ -127,51 +131,16 @@
 	}
 
 	function api_mode() {
-		return [
+		$conf 	= realpath(getcwd() . "/bootstrap/api.json");
 
-			'callFunctions' 	=> [
-				'libraries',
-				'config',
-				'plugins'
-			],
+		if (!$conf) {
+			throw new exception("Cannot load bootstrap config");
+			return false;
+		}
 
-			'libraries' 		=> [
-				'notes',
-				'events',
-				'config',
-				'plugin',
-				'database',
-				'core'
-			],
-
-			'config' 			=> [
-				'system'
-			],
-
-			'plugins'			=> [],
-
-			'plugable'			=> [
-				'events',
-				'notes'
-			]
-		];
-	}
-
-	function default_mode() {
-		return [
-
-			'callFunctions' 	=> [
-			],
-
-			'libraries' 		=> [
-			],
-
-			'config' 			=> [
-			],
-
-			'plugable'			=> [
-			]
-		];
+		$json 	= file_get_contents($conf);
+		$data 	= json_decode($json, true);
+		return $data;
 	}
 
 ?>

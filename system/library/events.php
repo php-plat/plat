@@ -6,7 +6,7 @@
 		protected $ready		= false;
 
 		function __construct() {
-			$this->dataPath = '../www/events/events.data';
+			$this->dataPath = '../data/events.data';
 			$this->ready 	= $this->read();
 		}
 

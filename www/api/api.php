@@ -8,11 +8,15 @@
 		public $result;
 
 		protected $data;
+		protected $token;
 
-		public function __construct($class, $method, $type, array $data = array()) {
+		public function __construct($class, $method, $type, $data = array(), $token) {
 			$this->class 	= $class;
 			$this->method 	= $method;
 			$this->type 	= $type;
+			$this->token 	= $token;
+
+			if ($data and !is_array($data)) $data = [$data];
 			$this->data 	= $data;
 		}
 
@@ -39,6 +43,7 @@
 			}
 		}
 
+		public function token() 	{return $this->token;}
 		public function json() 		{return json_encode($this->data);} 
 		public function data() 		{return $this->data;}
 		public function encoded() 	{return base64_encode(serialize($this->data));}

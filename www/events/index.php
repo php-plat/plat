@@ -19,7 +19,7 @@
 		
 		//Keep Alive Ping
 		$pingData 	= [
-			"id"				=> uniqid("kuhl-"),
+			"id"				=> uniqid("plat-"),
 			"server-time"		=> date($serverTimeFormat),
 			"server-load"		=> $load,
 			"server"			=> $_SERVER

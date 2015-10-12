@@ -77,9 +77,10 @@
 				]
 			];
 
-			$serialized	= serialize($content);
-			$encoded	= base64_encode($serialized);
-			$bytes 		= file_put_contents($this->path, $encoded);
+			$serialized	= json_encode($content);
+			//$encoded	= base64_encode($serialized);
+			//$bytes 		= file_put_contents($this->path, $encoded);
+			$bytes 		= file_put_contents($this->path, $serialized);
 			return ($bytes !== 0 and $bytes !== false);
 		}
 
@@ -89,11 +90,13 @@
 			$encoded 	= file_get_contents($this->path);
 			if (!$encoded) return false;
 
-			$serialized	= base64_decode($encoded);
+			$serialized	= json_decode($encoded, true);
 			if (!$serialized)  return false;
 
-			$config 	= unserialize($serialized);
-			if (!$config) return false;
+			$config 	= $serialized;
+
+			//$config 	= unserialize($serialized);
+			//if (!$config) return false;
 
 			$this->data 	= (isset($config['data'])) ? $config['data'] : [];
 			$this->ready 	= (is_array($this->data));
@@ -114,11 +117,12 @@
 				'data'			=> $this->data
 			];
 
-			$serialized	= serialize($content);
-			$encoded	= base64_encode($serialized);
-			$bytes 		= file_put_contents($this->path, $encoded);
+			$serialized	= json_encode($content);
+			//$encoded	= base64_encode($serialized);
+			//$bytes 		= file_put_contents($this->path, $encoded);
+			$bytes 		= file_put_contents($this->path, $serialized);
 
-			if ($bytes !== 0 and $bytes !== false) read();
+			if ($bytes !== 0 and $bytes !== false) $this->read();
 			return $this->ready;
 		}
 
