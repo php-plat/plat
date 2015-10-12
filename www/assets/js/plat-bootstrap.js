@@ -40,6 +40,20 @@
 			});
 		});
 
+		$('.auth_perform_register').on('click', function(event) {
+			var username 	= $('#auth_username').val();
+			var password 	= $('#auth_password').val();
+			var confirm 	= $('#auth_confirm').val();
+
+			gsAPI.call('register', [username, password, confirm], perform_register);
+		});
+
+		$('.auth_perform_reset').on('click', function(event) {
+			var username 	= $('#auth_username').val();
+
+			gsAPI.call('resetPassword', [username], perform_reset);
+		});
+
 		$('.auth_register').on('click', function(event) {
 			gsAPI.registerPrompt();
 		});
@@ -74,6 +88,22 @@
 			check_authentication();
 		} else {
 			gsAPI.dialog('auth.error');
+		}
+	}
+
+	function perform_register(data) {
+		if (data != false) {
+			gsAPI.dialog('reg.success');
+		} else {
+			gsAPI.dialog('reg.error');
+		}
+	}
+
+	function perform_reset(data) {
+		if (data != false) {
+			gsAPI.dialog('reset.success');
+		} else {
+			gsAPI.dialog('reset.error');
 		}
 	}
 

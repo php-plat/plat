@@ -51,9 +51,9 @@
 			return $user;
 		}
 
-		private function getUser($username) {
-			return (isset($this->config->$username))
-				? $this->config->$username
+		public function getUser($username) {
+			return ($this->userExists($username))
+				? $this->config->get($username)
 				: false
 			;
 		}
@@ -107,8 +107,12 @@
 			return ($user['api'] == $apiToken);
 		}
 
-		private function userExists($username) {
-			return (isset($this->config->$username));
+		public function userExists($username) {
+			global $core;
+
+			$user 	= $this->config->get($username);
+
+			return ($user != false);
 		}
 
 		private function token($username, $password) {
