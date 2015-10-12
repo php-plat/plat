@@ -1,2 +1,2 @@
-system/log/*
-data/events.data
+./data/events.data
+./system/log/messages.log
