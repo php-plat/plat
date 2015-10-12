@@ -62,7 +62,7 @@
 
 		private function read() {
 
-			$dataPath 		= ('events.data');
+			$dataPath 		= ('../../data/events.data');
 			if (!file_exists($dataPath)) return false;
 
 			$content 		= file_get_contents($dataPath);
@@ -81,7 +81,7 @@
 
 		private function write() {
 
-			$dataPath 		= ('events.data');
+			$dataPath 		= ('../../data/events.data');
 			$serialized 	= serialize($this->data);
 			$encoded 		= base64_encode($serialized);
 
