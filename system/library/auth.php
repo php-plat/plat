@@ -58,24 +58,32 @@
 			;
 		}
 
+		public function getUserByToken($apiToken) {
+			return ($this->config->get($apiToken));
+		}
+
 		public function removeUser($username) {
 			$this->config->$username 	= null;
 			return (is_null($this->config->$username));
 		}
 
-		public function changePassword($username, $oldPassword, $newPassword) {
-			if (!$this->authUser($username, $oldPassword))  return false;
+		public function changePassword($token, $newPassword) {
+			$email 			= $this->getUserByToken($token);
+			$user 			= $this->getUser($email);
+			if (!$user) return false;
 
-			$token 			= $this->token($username, $newPassword);
-			$apiToken 		= md5($username.$token);
 
-			$this->config->$username 	= [
-				'username'		=> $username,
+
+			$token 			= $this->token($email, $newPassword);
+			$apiToken 		= md5($email.$token);
+
+			$this->config->$email 	= [
+				'username'		=> $email,
 				'password'		=> $token,
-				'api'			=> $api
+				'api'			=> $apiToken
 			];
 
-			$this->config->$apiToken 	= $username;
+			$this->config->$apiToken 	= $email;
 
 			return true;
 		}

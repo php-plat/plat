@@ -54,6 +54,13 @@
 			gsAPI.call('resetPassword', [username], perform_reset);
 		});
 
+		$('.auth_complete_reset').on('click', function(event) {
+			var token 		= $('#auth_token').val();
+			var password 	= $('#auth_password').val();
+
+			gsAPI.call('changePassword', [token, password], complete_reset);
+		});
+
 		$('.auth_register').on('click', function(event) {
 			gsAPI.registerPrompt();
 		});
@@ -105,6 +112,14 @@
 		} else {
 			gsAPI.dialog('reset.error');
 		}
+	}
+
+	function complete_reset(data) {
+		if (data != false) {
+			gsAPI.dialog('reset.complete');
+		} else {
+			gsAPI.dialog('reset.error');
+		}	
 	}
 
 	function check_authentication() {

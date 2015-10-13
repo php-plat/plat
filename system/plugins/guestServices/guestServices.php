@@ -39,6 +39,22 @@
 			return $auth->addUser($email, $password);
 		}
 
+		public function performPasswordReset() {
+			global $core;
+
+			$auth 		= new auth();
+			$token 		= $_REQUEST['token'];
+
+			$email		= $auth->getUserByToken($token);
+			if (!$email) return false;
+
+			$user 		= $auth->getUser($email);
+			if (!$user) return false;
+
+			$_SESSION['password_reset']	= true;
+			return true;
+		}
+
 		public function resetPassword($email) {
 			global $core;
 
@@ -49,19 +65,24 @@
 			if (!$auth->userExists($email)) return false;
 
 			$user 			= $auth->getUser($email);
-			$host 			= $_SERVER['HTTP_HOST'];
+			$host 			= $_SERVER['HTTP_REFERER'];
 			$to      		= $email;
 			$subject 		= 'PGE Password Reset';
 			$message 		= "
 				<strong>Plat Game Engine: Password reset</strong>
 				<hr>
-				<a href=\"http://$host?token={$user['api']}&action=reset\">Reset Now</a>
+				<a href=\"{$host}post.php?token={$user['api']}&class=guestServices&method=performPasswordReset&data[token]={$user['api']}\">Reset Now</a>
 			";
 
 			$from 			= 'PGE <pge@kuhlonline.com>';
 		
     		$mailer 		= new mailer();
 			return $mailer->send($from, $to, $subject, $message);			
+		}
+
+		public function changePassword($token, $password) {
+			$auth 			= new auth();
+			return $auth->changePassword($token, $password);
 		}
 
 		public function ux($page, $param = array()) {
@@ -74,8 +95,18 @@
 			$folder 		= ($authenticated) ? 'users' : 'public';
 			$path 			= "../ui/$folder/$page.php";
 			
-			if (!realpath($path))return false;
-			return file_get_contents($path);
+			if (!realpath($path)) return false;
+
+			ob_start();
+				include($path);
+				$html 	= ob_get_clean();
+
+			if ($_SESSION['password_reset']) {
+				$_SESSION['password_reset'] = false;
+				$html .= "<script>API.dialog('reset.enter', '');</script>";
+			}
+
+			return $html;
 		}
 
 		public function application() {

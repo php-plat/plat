@@ -163,7 +163,11 @@
 			$file 		= realpath("dialog/$dialogPage.php");
 			if (!$file) return false;
 
-			$html 		= file_get_contents($file);
+			ob_start();
+				include($file);
+				$html 	= ob_get_clean();
+
+			//$html 		= file_get_contents($file);
 			if ($render) print $html;
 
 			return $html;

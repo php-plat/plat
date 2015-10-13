@@ -1,8 +1,8 @@
 <div class="panel panel-primary card">
-	<div class="panel-heading">
-		<h2 class="text-white">
-			<span class="glyphicon pull-right glyphicon-refresh"></span>
-    		Reset password
+    <div class="panel-heading">
+        <h2 class="text-white">
+            <span class="glyphicon pull-right glyphicon-refresh"></span>
+            Reset password
     	</h2>
 	</div>
   	<div class="panel-body">
