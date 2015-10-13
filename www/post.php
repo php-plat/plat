@@ -1,7 +1,12 @@
 <?php
 
-	exit(initAPI());
+	$result 	= initAPI();
+	if (!$result) {
+		throw new exception("Error Posting Data");
+		exit(1);
+	}
 
+	include('../www/index.html');
 
 	function initAPI() {
 		global $mods;
@@ -14,8 +19,8 @@
 		$expecting 	= ['class', 'method', 'type', 'data', 'token'];
 
 		/** Include API Class and Change to System */
-		include('api.php');
-		chdir("../../system");
+		include('api/api.php');
+		chdir("./../system");
 
 		/** Loop through the expected input, ignoring others to set varNames*/
 		foreach ($expecting as $varName) {
@@ -48,7 +53,8 @@
 		}
 
 		$plugableLibraries	= [];
-		boot(new bootMode('api'), $plugableLibraries);		
+		boot(new bootMode('post'), $plugableLibraries);		
+		$_SESSION['token'] 	= $token;
 
 
 		/** Create New API Core */
@@ -61,10 +67,7 @@
 		$results 	= $core->processRequests();
 		$apiResult	= $results[$requestId];
 
-		/** Encode Result */
-		$jsonResult = json_encode($apiResult);
-
-		return $jsonResult;
+		return ($apiResult != false);
 	}
 
 ?>

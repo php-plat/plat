@@ -51,11 +51,15 @@
 			return $user;
 		}
 
-		private function getUser($username) {
-			return (isset($this->config->$username))
-				? $this->config->$username
+		public function getUser($username) {
+			return ($this->userExists($username))
+				? $this->config->get($username)
 				: false
 			;
+		}
+
+		public function getUserByToken($apiToken) {
+			return ($this->config->get($apiToken));
 		}
 
 		public function removeUser($username) {
@@ -63,19 +67,23 @@
 			return (is_null($this->config->$username));
 		}
 
-		public function changePassword($username, $oldPassword, $newPassword) {
-			if (!$this->authUser($username, $oldPassword))  return false;
+		public function changePassword($token, $newPassword) {
+			$email 			= $this->getUserByToken($token);
+			$user 			= $this->getUser($email);
+			if (!$user) return false;
 
-			$token 			= $this->token($username, $newPassword);
-			$apiToken 		= md5($username.$token);
 
-			$this->config->$username 	= [
-				'username'		=> $username,
+
+			$token 			= $this->token($email, $newPassword);
+			$apiToken 		= md5($email.$token);
+
+			$this->config->$email 	= [
+				'username'		=> $email,
 				'password'		=> $token,
-				'api'			=> $api
+				'api'			=> $apiToken
 			];
 
-			$this->config->$apiToken 	= $username;
+			$this->config->$apiToken 	= $email;
 
 			return true;
 		}
@@ -107,8 +115,12 @@
 			return ($user['api'] == $apiToken);
 		}
 
-		private function userExists($username) {
-			return (isset($this->config->$username));
+		public function userExists($username) {
+			global $core;
+
+			$user 	= $this->config->get($username);
+
+			return ($user != false);
 		}
 
 		private function token($username, $password) {

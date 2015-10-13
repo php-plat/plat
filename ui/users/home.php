@@ -5,7 +5,7 @@
         
         <div class="panel-body">
           <h2>
-            Welcome
+            Welcome            
           </h2>
           <div class="right">
             <div>

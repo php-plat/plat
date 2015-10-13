@@ -51,9 +51,10 @@ var platAPI = function(contextRequest) {
 
 
 	/** UX */
-		this.page 				= function(pageName, param, element) {
+		this.page 				= function(pageName, param, element, callback) {
 			return this.send('guestServices', 'ux', [pageName, param], function(data) {					
 				$(element).html(data);
+				callback(data);
 			});
 		};
 
@@ -120,8 +121,8 @@ var platAPI = function(contextRequest) {
 			document.location.reload();
 		};
 
-		this.dialog 					= function(dialogName) {
-			this.send('guestServices', 'dialog', [dialogName], function(data) {
+		this.dialog 					= function(dialogName, param) {
+			this.send('guestServices', 'dialog', [dialogName, param], function(data) {
 				var $dialog = $('<div id="dialog" class="dialog" style="display:none;"></div>');
 				$('#content, #nav').css('opacity', '0.5');
 				$('#dialog').hide(0).remove();

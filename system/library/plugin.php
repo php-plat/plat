@@ -14,7 +14,7 @@
 
 
 		/** Magic Functions */
-			public function __construct($name) {
+			public function __construct($name = null) {
 				global $mods;
 				global $plugin_dbs;
 
@@ -46,8 +46,8 @@
 
 		/** Private Functions */
 			private function loadConfig() {
-				$folder 	= $this->meta['folder'];
-				$cfgs 		= $this->meta['manifest']['config'];
+				$folder 	= (isset($this->meta['folder'])) ? $this->meta['folder'] : null;
+				$cfgs 		= (isset($this->meta['manifest']['config'])) ? $this->meta['manifest']['config'] : [];
 
 				foreach ($cfgs as $cfg) {
 					$path 	= "$folder/$cfg.json";
@@ -163,7 +163,11 @@
 			$file 		= realpath("dialog/$dialogPage.php");
 			if (!$file) return false;
 
-			$html 		= file_get_contents($file);
+			ob_start();
+				include($file);
+				$html 	= ob_get_clean();
+
+			//$html 		= file_get_contents($file);
 			if ($render) print $html;
 
 			return $html;
