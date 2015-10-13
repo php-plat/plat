@@ -55,6 +55,10 @@
 			}
 		}
 
+		public function get($key) {
+			return $this->__get($key);
+		}
+
 		public function id() {return (isset($this->config['id'])) ? $this->config['id'] : null;}
 		public function version() {return (isset($this->config['version'])) ? $this->config['version'] : null;}
 		public function name() {return $this->name;}

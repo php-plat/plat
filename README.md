@@ -1,37 +1,12 @@
-php-plat
+plat-game-engine
 ---
-Release Candidate 1 version 0.1.1
+Alpha version 0.1.1
 
-A WebApp Framework for PHP
+A HTML5 Game Framework for PHP
 
-### About Plat
-php-Plat is a PHP webApp Framework designed to assist in web application development.
-Plat provided the ground work for creating a web application in PHP. It uses a collection
-of built in features to provide basic programing tools such as built-in controllers for
-configuration files and database connections.
+### About Plat-Game-Engine
 
 It uses a plugin-based system to provide extensiability to developers.
-
-### Features
-
-- Database Controller
-- Configuration Controller
-- JavaScript Client API
-- Server-Side API
-- Server-to-client Events and Push Notifications
-- Global Error Handling
-- Logging
-- Authentication Layer
-
-### Future Development
-
-Additional features are already being developed. Here is a short list.
-
-- Code Documentation
-- User Documentation
-- Code Standardization
-
----
 
 ##### Third-Party Resources
 

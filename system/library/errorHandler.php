@@ -24,7 +24,7 @@
 			    case E_USER_ERROR:
 			    	$msg 		= 
 			    		"-FATAL- Error on line $errline in file $errfile.\n".
-			    		"[$errno] $errstr"
+			    		"[$errno] $errstr\n"
 			    	;
 
 			    	$core->logger->logMessage($msg);
@@ -35,7 +35,7 @@
 			    default:
 			        $msg 		= 
 			    		"Error on line $errline in file $errfile.\n".
-			    		"[$errno] $errstr"
+			    		"[$errno] $errstr\n"
 			    	;
 
 			        $core->logger->logMessage($msg);

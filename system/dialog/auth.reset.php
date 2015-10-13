@@ -1,8 +1,8 @@
 <div class="panel panel-primary card">
-	<div class="panel-heading">
-		<h2 class="text-white">
-			<span class="glyphicon pull-right glyphicon-refresh"></span>
-    		Reset password
+    <div class="panel-heading">
+        <h2 class="text-white">
+            <span class="glyphicon pull-right glyphicon-refresh"></span>
+            Reset password
     	</h2>
 	</div>
   	<div class="panel-body">
@@ -10,7 +10,7 @@
     		<div class="form-group">
     			<label class="col-sm-12 control-label" for="email">Please enter your email address</label>
     			<div class="col-sm-12">
-    				<input class="form-control" name="email" id="email" type="email" title="Email Address" placeholder="you@some.com" required>
+    				<input class="form-control" name="email" id="auth_username" type="email" title="Email Address" placeholder="you@some.com" required>
     			</div>
     		</div>
 			<br>
@@ -25,20 +25,9 @@
     			</div>
     			<div class="col-xs-8 col-sm-6 right">
     				<button type="button" class="dialog_cancel btn btn-default">Cancel</button>
-    				<button type="button" class="submit btn btn-primary">Register</button>
+    				<button type="button" class="auth_perform_reset btn btn-danger">Reset</button>
 				</div>
     		</div>
     	</form>
 	</div>
-
-	<script>
-		$('.submit').on('once', function(event) {
-			$('.submit')
-				.addClass("disabled")
-				.attr("disabled", "disabled")
-			;
-		});
-
-	</script>
-
 </div>

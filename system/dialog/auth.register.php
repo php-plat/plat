@@ -10,19 +10,19 @@
     		<div class="form-group">
     			<label class="col-sm-12 control-label" for="email">Please enter your email address</label>
     			<div class="col-sm-12">
-    				<input class="form-control" name="email" id="email" type="email" title="Email Address" placeholder="you@some.com" required>
+    				<input class="form-control" name="email" id="auth_username" type="email" title="Email Address" placeholder="you@some.com" required>
     			</div>
     		</div>
     		<div class="form-group">
     			<label class="col-sm-12 control-label" for="password">Please enter your password</label>
     			<div class="col-sm-12">
-    				<input class="form-control" name="password" id="password" type="password" title="Password" placeholder="Secret" required>
+    				<input class="form-control" name="password" id="auth_password" type="password" title="Password" placeholder="Secret" required>
     			</div>
     		</div>
     		<div class="form-group">
     			<label class="col-sm-12 control-label" for="confirm">Please confirm your password</label>
     			<div class="col-sm-12">
-    				<input class="form-control" name="confirm" id="confirm" type="password" title="Confirm your Password" placeholder="Secret Again" required>
+    				<input class="form-control" name="confirm" id="auth_confirm" type="password" title="Confirm your Password" placeholder="Secret Again" required>
     			</div>
     		</div>
 			<br>
@@ -37,21 +37,9 @@
     			</div>
     			<div class="col-xs-8 col-sm-6 right">
     				<button type="button" class="dialog_cancel btn btn-default">Cancel</button>
-    				<button type="button" class="submit btn btn-primary">Register</button>
+    				<button type="button" class="auth_perform_register btn btn-primary">Register</button>
 				</div>
     		</div>
     	</form>
 	</div>
-
-	<script>
-		$('.submit').on('once', function(event) {
-			$('.submit')
-				.addClass("disabled")
-				.attr("disabled", "disabled")
-			;
-		});
-
-		
-	</script>
-
 </div>
