@@ -1,2 +1,4 @@
 data/events.data
 system/log/messages.log
+www/events/events.data
+system/config/users.conf
